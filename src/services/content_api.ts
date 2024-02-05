@@ -26,6 +26,12 @@ export const createContentApi = async (value?: { title: string; description: str
   return data;
 };
 
+export const updateContentApi = async (value?: { title: string; description: string; }, id?: string) => {
+  const url = baseUrl + `/todos/${id}`;
+  const data = await fetchAPI({ url, method: "PUT", body: value });
+  return data;
+};
+
 export const delContentId = async (id: string) => {
   const url = baseUrl + `/todos/${id}`;
   const data = await fetchAPI({ url, method: "DELETE" });

@@ -5,6 +5,7 @@ import {
   createContentApi,
   delContentId,
   getAllContent,
+  updateContentApi,
 } from "@/services/content_api";
 import moment from "moment";
 import React, { ReactNode, useEffect, useState } from "react";
@@ -26,25 +27,30 @@ const List = () => {
     getAllContents();
   }, []);
 
-  const createContent = async (data: {
-    title: string;
-    description: string;
-  }) => {
+  const createContent = async (
+    data: {
+      title: string;
+      description: string;
+    },
+    id?: string
+  ) => {
     try {
-      const res = await createContentApi(data);
+      const res = id
+        ? await updateContentApi(data, id)
+        : await createContentApi(data);
       if (res.message) {
         Swal.fire({
           icon: "error",
-          title: "Your content cannot create",
+          title: id ? "Your content cannot update" : "Your content cannot create",
           showConfirmButton: false,
           timer: 1800,
         });
       } else {
-        const merge = [...list,res];
+        const merge = [...list, res];
         setList(merge);
         Swal.fire({
           icon: "success",
-          title: "Your content has been created",
+          title: id ? "Your content has been updated" :"Your content has been created",
           showConfirmButton: false,
           timer: 1800,
         });
@@ -88,7 +94,7 @@ const List = () => {
           text: "Your file has been deleted.",
           icon: "success",
         });
-        const reList = list?.filter((f)=>f?._id !== id)
+        const reList = list?.filter((f) => f?._id !== id);
         setList(reList || []);
       }
     } catch (error) {
@@ -99,7 +105,9 @@ const List = () => {
   const Headerbar = () => {
     return (
       <div className="w-full grid grid-cols-2 py-[2vh] mb-[1vh] items-center">
-        <div className="flex justify-start pl-[2vh] font-bold text-gray-400">PRODUCTS</div>
+        <div className="flex justify-start pl-[2vh] font-bold text-gray-400">
+          PRODUCTS
+        </div>
         <div className="flex justify-end pr-[2vh]">
           <MainButton
             onClick={async () => {
@@ -157,7 +165,36 @@ const List = () => {
             </h3>
           </div>
           <div className="flex mt-4 gap-4 justify-between items-center">
-            <MainButton>Edit</MainButton>
+            <MainButton
+              onClick={async () => {
+                const { value: formValues } = await Swal.fire({
+                  title: "Create Content",
+                  html: `
+                <div class='text-left font-bold text-lg pb-[1vh]'>Title</div>
+                <input placeholder='Title' id="swal-input1" class="my-input">
+                <div class='text-left font-bold text-lg pb-[1vh] pt-[2vh]'>Description</div>
+                <textarea placeholder='Description...' id="swal-input2" class="my-text-area">
+              `,
+                  focusConfirm: false,
+                  preConfirm: () => {
+                    let title = (
+                      document.getElementById("swal-input1") as HTMLInputElement
+                    )?.value;
+                    let desc = (
+                      document.getElementById("swal-input2") as HTMLInputElement
+                    )?.value;
+                    const values = { title: title, description: desc };
+                    return values;
+                  },
+                });
+
+                if (formValues) {
+                  createContent(formValues, data?._id);
+                }
+              }}
+            >
+              Edit
+            </MainButton>
             <DelButton
               onClick={() =>
                 Swal.fire({
