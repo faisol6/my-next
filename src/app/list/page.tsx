@@ -46,8 +46,16 @@ const List = () => {
           timer: 1800,
         });
       } else {
-        const merge = [...list, res];
-        setList(merge);
+        if(id) {
+          const edit = list?.map((ml)=>{
+            return ml._id === res?._id ? res : ml
+          })
+          setList(edit);
+        } 
+        else {
+          const merge = [...list, res];
+          setList(merge);
+        }
         Swal.fire({
           icon: "success",
           title: id ? "Your content has been updated" :"Your content has been created",
@@ -156,7 +164,7 @@ const List = () => {
           <span className="block text-slate-400 font-semibold text-sm">
             {`${moment(data?.updatedAt).format("MMMM Do YYYY, h:mm:ss a")}`}
           </span>
-          <h3 className="mt-3 font-bold text-lg pb-4 border-b border-slate-300 min-h-[4vh]">
+          <h3 className="mt-3 font-bold text-lg border-b border-slate-300 min-h-[3.8vh] line-clamp-1">
             {data?.title || "-"}
           </h3>
           <div className="py-[1vh] border-b border-slate-300 min-h-[9vh]">
@@ -171,9 +179,9 @@ const List = () => {
                   title: "Create Content",
                   html: `
                 <div class='text-left font-bold text-lg pb-[1vh]'>Title</div>
-                <input placeholder='Title' id="swal-input1" class="my-input">
+                <input placeholder='Title' id="swal-input1" class="my-input" value="${data.title}"/>
                 <div class='text-left font-bold text-lg pb-[1vh] pt-[2vh]'>Description</div>
-                <textarea placeholder='Description...' id="swal-input2" class="my-text-area">
+                <textarea placeholder='Description...' id="swal-input2" class="my-text-area">${data.description}</textarea>
               `,
                   focusConfirm: false,
                   preConfirm: () => {
