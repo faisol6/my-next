@@ -154,7 +154,7 @@ const List = () => {
 
   const CardImage = ({ data }: { data: IListItem }) => {
     return (
-      <div className="bg-white shadow rounded-lg overflow-hidden w-full">
+      <div className="bg-white shadow rounded-lg overflow-hidden w-full cursor-pointer hover:scale-[1.03] transition-all">
         <img
           src="https://loremflickr.com/320/240?random=1"
           className="object-cover h-52 w-full"
@@ -194,6 +194,10 @@ const List = () => {
                     const values = { title: title, description: desc };
                     return values;
                   },
+                  showCancelButton: true,
+                  confirmButtonColor: "#3085d6",
+                  cancelButtonColor: "#d33",
+                  confirmButtonText: "Confirm",
                 });
 
                 if (formValues) {
