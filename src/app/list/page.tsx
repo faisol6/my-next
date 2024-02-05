@@ -99,7 +99,7 @@ const List = () => {
   const Headerbar = () => {
     return (
       <div className="w-full grid grid-cols-2 py-[2vh] mb-[1vh] items-center">
-        <div className="flex justify-start pl-[2vh] font-bold text-gray-500">PRODUCTS</div>
+        <div className="flex justify-start pl-[2vh] font-bold text-gray-400">PRODUCTS</div>
         <div className="flex justify-end pr-[2vh]">
           <MainButton
             onClick={async () => {
