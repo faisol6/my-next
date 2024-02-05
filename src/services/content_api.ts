@@ -14,7 +14,7 @@ export const getAllContent = async () => {
   return data;
 };
 
-export const getContentId = async (id: number) => {
+export const getContentId = async (id: string) => {
   const url = baseUrl + `/todos/${id}`;
   const data = await fetchAPI({ url, method: "GET" });
   return data;
@@ -26,20 +26,8 @@ export const createContentApi = async (value?: { title: string; description: str
   return data;
 };
 
-export const getProductByItemId = async (id: number) => {
-  const url = baseUrl + "url" + id;
-  const data = await fetchAPI({ url, method: "GET" });
-  return data;
-};
-
-export const delProductOrderItem = async (id: number) => {
-  const url = baseUrl + "url" + `${id}`;
-  const data = await fetchAPI({ url, method: "DELETE" });
-  return data;
-};
-
-export const delFilePlan = async (fileId: number) => {
-  const url = baseUrl + "url" + `/${fileId}`;
+export const delContentId = async (id: string) => {
+  const url = baseUrl + `/todos/${id}`;
   const data = await fetchAPI({ url, method: "DELETE" });
   return data;
 };
