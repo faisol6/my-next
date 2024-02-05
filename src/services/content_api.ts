@@ -1,6 +1,5 @@
 import { fetchAPI } from "../lib/fetch";
 import { PUBLIC_API_URL } from "../lib/constants";
-// import { createQueryString } from "../lib/utils";
 
 const baseUrl: string = PUBLIC_API_URL;
 
@@ -10,17 +9,12 @@ interface IUserLogin {
 }
 
 export const getAllContent = async () => {
-  //   const queryString = createQueryString(qrs);
-  //   const url = baseUrl + "url" + queryString;
   const url = baseUrl + "/todos/";
   const data = await fetchAPI({ url, method: "GET" });
-  console.log("data====>", data)
   return data;
 };
 
 export const getContentId = async (id: number) => {
-  //   const queryString = createQueryString(qrs);
-  //   const url = baseUrl + "url" + queryString;
   const url = baseUrl + `/todos/${id}`;
   const data = await fetchAPI({ url, method: "GET" });
   return data;
