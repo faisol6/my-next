@@ -31,3 +31,37 @@ body {
     text-wrap: balance;
   }
 }
+
+.my-text-area {
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  padding: 1vh;
+  height: 15vh;
+  width: 100%;
+  transition: ease-in-out 3ms;
+}
+
+.my-input {
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  padding: 1vh;
+  width: 100%;
+  transition: ease-in-out 3ms;
+}
+
+.my-text-area:focus,
+.my-text-area:active,
+.my-text-area:hover,
+.my-text-area:focus-visible,
+.my-input:focus,
+.my-input:active,
+.my-input:hover,
+.my-input:focus-visible {
+  border: 1px solid #6392e8;
+  outline: #6392e8 auto 1px;
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+  font-size: 1.6vh !important;
+  width: 10vh !important;
+}

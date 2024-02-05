@@ -9,11 +9,26 @@ interface IUserLogin {
   password: string;
 }
 
-export const getAllProduct = async () => {
+export const getAllContent = async () => {
   //   const queryString = createQueryString(qrs);
   //   const url = baseUrl + "url" + queryString;
   const url = baseUrl + "/todos/";
   const data = await fetchAPI({ url, method: "GET" });
+  console.log("data====>", data)
+  return data;
+};
+
+export const getContentId = async (id: number) => {
+  //   const queryString = createQueryString(qrs);
+  //   const url = baseUrl + "url" + queryString;
+  const url = baseUrl + `/todos/${id}`;
+  const data = await fetchAPI({ url, method: "GET" });
+  return data;
+};
+
+export const createContentApi = async (value?: { title: string; desc: string; }) => {
+  const url = baseUrl + `/todos/`;
+  const data = await fetchAPI({ url, method: "POST", body: value });
   return data;
 };
 

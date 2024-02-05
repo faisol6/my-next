@@ -1,8 +1,8 @@
 "use client"; // 👈 use it here
-import { onLogin } from "@/services/product";
+import { onLogin } from "@/services/content_api";
 import React, { useState } from "react";
 
-const page = () => {
+const Login = () => {
   const [userInfo, setUserInfo] = useState<{
     username: string;
     password: string;
@@ -73,4 +73,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Login;
