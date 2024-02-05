@@ -113,8 +113,8 @@ const List = () => {
   const Headerbar = () => {
     return (
       <div className="w-full grid grid-cols-2 py-[2vh] mb-[1vh] items-center">
-        <div className="flex justify-start pl-[2vh] font-bold text-gray-400">
-          PRODUCTS
+        <div className="flex justify-start pl-[2vh] font-bold text-gray-400 text-[3vh]">
+          Contents
         </div>
         <div className="flex justify-end pr-[2vh]">
           <MainButton
@@ -154,7 +154,10 @@ const List = () => {
 
   const CardImage = ({ data }: { data: IListItem }) => {
     return (
-      <div className="bg-white shadow rounded-lg overflow-hidden w-full cursor-pointer hover:scale-[1.03] transition-all">
+      <div className="bg-white shadow rounded-lg overflow-hidden w-full cursor-pointer hover:scale-[1.03] transition-all"
+      onClick={()=>{
+
+      }}>
         <img
           src="https://loremflickr.com/320/240?random=1"
           className="object-cover h-52 w-full"
