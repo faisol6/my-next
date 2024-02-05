@@ -1,11 +1,15 @@
 "use client"; // 👈 use it here
 import Button from "@/components/button";
-import { createContentApi } from "@/services/content_api";
-import React from "react";
+import { createContentApi, getAllContent } from "@/services/content_api";
+import React, { useEffect } from "react";
 import Swal from "sweetalert2";
 
 const List = () => {
-  const createContent = async (data: { title: string; desc: string }) => {
+  useEffect(()=>{
+    getAllContents();
+  },[]);
+
+  const createContent = async (data: { title: string; description: string }) => {
     try {
       const res = await createContentApi(data);
       if(res.message) {
@@ -25,6 +29,24 @@ const List = () => {
       }
     } catch (error) {
       console.log("createContent error", error);
+    }
+  };
+
+  const getAllContents = async () => {
+    try {
+      const res = await getAllContent();
+      if(res.message) {
+        Swal.fire({
+          icon: "error",
+          title: "cannot get your all contents",
+          showConfirmButton: false,
+          timer: 1800
+        });
+      } else {
+       console.log("ressss",res)
+      }
+    } catch (error) {
+      console.log("getAllContents error", error);
     }
   };
 
@@ -50,7 +72,7 @@ const List = () => {
                 let desc = (
                   document.getElementById("swal-input2") as HTMLInputElement
                 )?.value;
-                const values = { title: title, desc: desc };
+                const values = { title: title, description: desc };
                 return values;
               },
             });

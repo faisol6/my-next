@@ -26,7 +26,7 @@ export const getContentId = async (id: number) => {
   return data;
 };
 
-export const createContentApi = async (value?: { title: string; desc: string; }) => {
+export const createContentApi = async (value?: { title: string; description: string; }) => {
   const url = baseUrl + `/todos/`;
   const data = await fetchAPI({ url, method: "POST", body: value });
   return data;
