@@ -57,7 +57,7 @@ body {
   outline: #6392e8 auto 1px;
 }
 
-div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm,div:where(.swal2-container) button:where(.swal2-styled).swal2-cancel {
   font-size: 1.6vh !important;
   min-width: 10vh !important;
 }

@@ -164,7 +164,7 @@ const List = () => {
           <span className="block text-slate-400 font-semibold text-sm">
             {`${moment(data?.updatedAt).format("MMMM Do YYYY, h:mm:ss a")}`}
           </span>
-          <h3 className="mt-3 font-bold text-lg border-b border-slate-300 min-h-[3.8vh] line-clamp-1">
+          <h3 className="mt-3 font-bold text-lg border-b border-slate-300 min-h-[3.8vh] line-clamp-1 leading-9">
             {data?.title || "-"}
           </h3>
           <div className="py-[1vh] border-b border-slate-300 min-h-[9vh]">
@@ -235,7 +235,7 @@ const List = () => {
   return (
     <div className="w-full h-full">
       <Headerbar />
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid 2xl:grid-cols-4 lg:grid-cols-2 md:grid-cols-2 gap-4">
         {list?.map((l: IListItem, idx: number) => (
           <CardImage key={idx} data={l} />
         ))}

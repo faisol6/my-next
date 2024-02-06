@@ -107,9 +107,8 @@ export const MyTable = ({ data }: any) => {
   );
 };
 
-// #a3e635
-export const tableClass = `border-2 border-[white] 
-p-[1vh] text-[white] bg-[#232326]`;
+export const tableClass = `border-2 border-[white] p-[1vh] text-[white] bg-[#232326]`;
+
 export const mockData = {
   columns: [
     {
