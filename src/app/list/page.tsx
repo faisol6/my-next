@@ -8,19 +8,13 @@ import {
   updateContentApi,
 } from "@/services/content_api";
 import moment from "moment";
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-
-export interface IListItem {
-  createdAt: string;
-  description: string;
-  title: string;
-  updatedAt: string;
-  user_id: string;
-  _id: string;
-}
+import { useRouter } from "next/navigation";
+import { IListItem } from "@/lib/interface";
 
 const List = () => {
+  const router = useRouter();
   const [list, setList] = useState<IListItem[]>([]);
 
   useEffect(() => {
@@ -41,24 +35,27 @@ const List = () => {
       if (res.message) {
         Swal.fire({
           icon: "error",
-          title: id ? "Your content cannot update" : "Your content cannot create",
+          title: id
+            ? "Your content cannot update"
+            : "Your content cannot create",
           showConfirmButton: false,
           timer: 1800,
         });
       } else {
-        if(id) {
-          const edit = list?.map((ml)=>{
-            return ml._id === res?._id ? res : ml
-          })
+        if (id) {
+          const edit = list?.map((ml) => {
+            return ml._id === res?._id ? res : ml;
+          });
           setList(edit);
-        } 
-        else {
+        } else {
           const merge = [...list, res];
           setList(merge);
         }
         Swal.fire({
           icon: "success",
-          title: id ? "Your content has been updated" :"Your content has been created",
+          title: id
+            ? "Your content has been updated"
+            : "Your content has been created",
           showConfirmButton: false,
           timer: 1800,
         });
@@ -154,10 +151,10 @@ const List = () => {
 
   const CardImage = ({ data }: { data: IListItem }) => {
     return (
-      <div className="bg-white shadow rounded-lg overflow-hidden w-full cursor-pointer hover:scale-[1.03] transition-all"
-      onClick={()=>{
-
-      }}>
+      <div
+        className="bg-white shadow rounded-lg overflow-hidden w-full cursor-pointer hover:scale-[1.03] transition-all"
+        onClick={() => router.push(`/list/${data._id}`)}
+      >
         <img
           src="https://loremflickr.com/320/240?random=1"
           className="object-cover h-52 w-full"

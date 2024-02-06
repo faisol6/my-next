@@ -1,7 +1,8 @@
-
-export interface IResStatus {
-  code: number;
-  status: string;
-  message?: string;
-  result: any
+export interface IListItem {
+  createdAt: string;
+  description: string;
+  title: string;
+  updatedAt: string;
+  user_id: string;
+  _id: string;
 }

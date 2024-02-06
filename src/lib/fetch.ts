@@ -26,30 +26,6 @@ export const fetchWintTokenAPI = async (
   return json;
 };
 
-// export const fetchAPI = async (
-//   url: string = PUBLIC_API_URL,
-//   method: fetchMethod = "GET",
-//   headers = {},
-//   body = {}
-// ) => {
-//   const res = await fetch(url, {
-//     method: method,
-//     headers: {
-//       accept: "*/*",
-//       "Content-Type": "application/json",
-//       ...headers,
-//     },
-//     body: method === "POST" || method === "PUT" ? JSON.stringify(body) : null,
-//   });
-
-//   const json = await res.json();
-//   if (json.errors) {
-//     console.error(json.errors);
-//     throw new Error("Failed to fetch API");
-//   }
-//   return json;
-// };
-
 type Param = {
   url: string;
   method: fetchMethod;
@@ -57,7 +33,10 @@ type Param = {
   headers?: any;
 };
 export const fetchAPI = async ({ url, method, body, headers }: Param) => {
-  const token = localStorage.getItem("mytoken");
+  let token: string | null = "";
+  if (typeof window !== "undefined") {
+    token = localStorage.getItem("mytoken");
+  }
   const res = await fetch(url, {
     method: method,
     headers: {
@@ -76,8 +55,10 @@ export const fetchAPI = async ({ url, method, body, headers }: Param) => {
   if (json.message === "Unauthorized") {
     // openNotification({ method: "ERROR", message: json.message });
     // window.location.replace(`/webplatformfront/login`);
-    window.location.replace(`/login`);
-    localStorage.clear();
+    if (typeof window !== "undefined") {
+      window.location.replace(`/login`);
+      localStorage.clear();
+    }
   }
   if (json.errors) {
     console.error(json.errors);
@@ -103,26 +84,4 @@ export const fetchFormData = async (
     throw new Error("Failed to fetch API");
   }
   return json;
-};
-
-export const FetchFile = async ({ url, method, headers }: Param) => {
-  try {
-    const token = localStorage.getItem("webplatformToken");
-    const res = await fetch(url, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        Accept: "*/*",
-        ...headers,
-      },
-      method: method || "POST",
-    });
-    // return res.blob()
-    if (res.status === 200) {
-      return { code: 200, data: await res.blob() };
-    } else {
-      return { code: 400, message: res.statusText };
-    }
-  } catch (err: any) {
-    return { success: false, message: err.message };
-  }
 };
