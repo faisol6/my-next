@@ -7,6 +7,7 @@ import { IListItem } from "@/lib/interface";
 import CardAddCart from "@/components/CardAddCart";
 import { DelButton } from "@/components/button";
 import { useRouter } from "next/navigation";
+import FadeInSection from "@/components/ScrollFade";
 
 export const getContents = async (id: string) => {
   try {
@@ -54,7 +55,7 @@ const Page = ({ params }: { params: { item: string } }) => {
   return (
     <div className="w-full h-full px-[2vh]">
       <div className="grid justify-end pt-[3vh]">
-        <DelButton onClick={()=>router.push(`/`)}>Back</DelButton>
+        <DelButton onClick={() => router.push(`/`)}>Back</DelButton>
       </div>
       <div
         className="w-full h-full grid grid-cols-2 pt-[3vh] pb-[3vh]

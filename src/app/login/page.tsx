@@ -15,6 +15,7 @@ const Login = () => {
       const res = await onLogin(userInfo);
       if (res?.message === "Invalid username or password") {
       } else {
+        localStorage.setItem("myuser", JSON.stringify(userInfo) || "");
         localStorage.setItem("mytoken", res?.token || "");
         window.location.replace(`/`);
       }
