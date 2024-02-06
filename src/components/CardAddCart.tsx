@@ -1,36 +1,26 @@
 /* eslint-disable @next/next/no-img-element */
-import { numberToCommasNumber } from "@/lib/utils";
+import { IListItem } from "@/lib/interface";
+import moment from "moment";
 
-const CardAddCart = ({
-  title = "",
-  price = "",
-  onClick,
-}: {
-  title: string;
-  price: string;
-  onClick?: (value?: any) => void;
-}) => {
+const CardAddCart = ({ dataInfo }: { dataInfo?: IListItem }) => {
+  console.log("dataInfo", dataInfo);
   return (
     <div className="grid 2xl:justify-items-end justify-items-center 2xl:pr-[2vh]">
       <img
         src={"https://loremflickr.com/320/240?random=1"}
         style={{ objectFit: "cover" }}
-        className="rounded-t-lg"
+        className="rounded-t-lg 2xl:w-[650px] 2xl:h-[650px] lg:w-[650px] lg:h-[650px] md:w-[650px] md:h-[650px]"
         alt="detail"
-        width={650}
-        height={650}
       />
       <div
         style={{
           backgroundColor: "#232326",
-          width: 650,
           padding: "3vh",
-          color:'white'
+          color: "white",
         }}
-        className="rounded-b-lg"
+        className="rounded-b-lg 2xl:w-[650px] lg:w-[650px] md:w-[650px]"
       >
-        <h1>{title}</h1>
-        <div
+        {/* <div
           style={{
             fontSize: "1.5vh",
             fontWeight: "bold",
@@ -38,12 +28,19 @@ const CardAddCart = ({
             color:'white'
           }}
         >
-          {"SQUARE ENIX CO., LTD."}
-        </div>
+          {dataInfo?.title||""}
+        </div> */}
         <div
-          style={{ color:'white',fontSize: "1.5vh", fontWeight: "bold", marginBottom: "1vh" }}
+          style={{
+            color: "white",
+            fontSize: "1.5vh",
+            fontWeight: "bold",
+            marginBottom: "1vh",
+          }}
         >
-          {"29/2/2024 12:00 AM"}
+          {dataInfo?.updatedAt
+            ? moment(dataInfo?.updatedAt).format("MMMM Do YYYY, h:mm:ss a")
+            : ""}
         </div>
         <div style={{ padding: "1vh 0" }}>
           <span
@@ -52,7 +49,7 @@ const CardAddCart = ({
               padding: "0.2vh 1vh",
               marginRight: "1vh",
               fontSize: "1.2vh",
-              color:'white'
+              color: "white",
             }}
           >
             PS5
@@ -62,7 +59,8 @@ const CardAddCart = ({
               border: "1px solid white",
               padding: "0.2vh 1vh",
               marginRight: "1vh",
-              color:'white'
+              fontSize: "1.2vh",
+              color: "white",
             }}
           >
             My Shop Entertainment
@@ -71,17 +69,16 @@ const CardAddCart = ({
         <div
           style={{
             backgroundColor: "#3B3A3C",
-            fontSize: 25,
-            width: 250,
+            // fontSize: 25,
+            // width: 250,
             textAlign: "center",
-            borderRadius: 30,
+            borderRadius: 5,
             marginTop: "2vh",
-            padding: "1vh 0",
-            color:'white'
+            padding: "2vh",
+            color: "white",
           }}
         >
-          {price && numberToCommasNumber(Number(price))}
-          {" THB"}
+          {dataInfo?.description || ""}
         </div>
         <div
           style={{
@@ -90,15 +87,14 @@ const CardAddCart = ({
             fontWeight: "bold",
             width: "100%",
             textAlign: "center",
-            borderRadius: 30,
+            borderRadius: 5,
             padding: "1.5vh 0",
             marginTop: "3vh",
-            color:'white'
+            color: "white",
           }}
           className="cursor-pointer"
-          onClick={onClick}
         >
-          Add to card
+          {dataInfo?.title || ""}
         </div>
       </div>
     </div>

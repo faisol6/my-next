@@ -61,7 +61,7 @@ const Page = ({ params }: { params: { item: string } }) => {
         2xl:grid-cols-2 pt-[3vh] pb-[3vh]
         items-end content-center"
       >
-        <CardAddCart title={""} price={"123"} onClick={() => {}} />
+        <CardAddCart dataInfo={info} />
         <MyTable data={mockData} />
       </div>
     </div>
