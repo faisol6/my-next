@@ -7,7 +7,6 @@ import { IListItem } from "@/lib/interface";
 import CardAddCart from "@/components/CardAddCart";
 import { DelButton } from "@/components/button";
 import { useRouter } from "next/navigation";
-import FadeInSection from "@/components/ScrollFade";
 
 export const getContents = async (id: string) => {
   try {
