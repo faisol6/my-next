@@ -25,8 +25,8 @@ const Login = () => {
   };
 
   return (
-    <div className="grid justify-items-center h-[100vh] w-[100vw]">
-      <div className="bg-black self-center">
+    <div className="grid justify-items-center h-[100vh]">
+      <div className="self-center">
         <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">
