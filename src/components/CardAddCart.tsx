@@ -11,7 +11,7 @@ const CardAddCart = ({
   onClick?: (value?: any) => void;
 }) => {
   return (
-    <div className="grid justify-items-end pr-[2vh]">
+    <div className="grid 2xl:justify-items-end justify-items-center 2xl:pr-[2vh]">
       <img
         src={"https://loremflickr.com/320/240?random=1"}
         style={{ objectFit: "cover" }}

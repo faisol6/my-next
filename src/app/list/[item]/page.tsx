@@ -57,7 +57,8 @@ const Page = ({ params }: { params: { item: string } }) => {
         <DelButton onClick={() => router.push(`/`)}>Back</DelButton>
       </div>
       <div
-        className="w-full h-full grid grid-cols-2 pt-[3vh] pb-[3vh]
+        className="w-full h-full grid 
+        2xl:grid-cols-2 pt-[3vh] pb-[3vh]
         items-end content-center"
       >
         <CardAddCart title={""} price={"123"} onClick={() => {}} />
@@ -71,7 +72,8 @@ export default Page;
 
 export const MyTable = ({ data }: any) => {
   return (
-    <div className="grid justify-items-start pl-[2vh]">
+    <div className={`grid 2xl:justify-items-start justify-item-center 2xl:pl-[2vh]
+    2xl:pt-0 pt-[5vh]`}>
       <div className="pb-[2vh] text-[3vh] font-bold text-[#FF8300]">Bonus</div>
       <table className="table-fixed">
         <thead className={tableClass}>
